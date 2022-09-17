@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Live demo – Input, Toasts, Logging (So1)</string>
+    <string name="clicked_message">Clicked !</string>
+    <string name="long_pressed_message">Long Pressed !</string>
+    <string name="short_toast_message">Hello! What is the Ups! SHORT TOAST</string>
+    <string name="long_toast_message">Long toast message HEY</string>
+
 </resources>
