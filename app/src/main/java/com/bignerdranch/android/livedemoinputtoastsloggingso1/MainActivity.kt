@@ -42,7 +42,6 @@ class MainActivity : AppCompatActivity() {
         this.setupTextCallbacks()
         this.setupSwitchCallbacks()
         this.setupSeekBarCallbacks()
-
         this.rememberSwitchPosition()
     }
 
@@ -67,15 +66,18 @@ class MainActivity : AppCompatActivity() {
 
         // Setup the first callback for first button
         this.firstButton.setOnClickListener { view : View ->
+
             val btn: Button = (view as Button)
             btn.text = this.getString(R.string.clicked_message)
 
            if(this.switchPosition){
-               println("Making button 1 Toast")
-               Toast.makeText(this, this.getString(R.string.short_toast_message), Toast.LENGTH_SHORT).show()
+               println("Making button 1 Toast !")
+               Toast.makeText(this, R.string.short_toast_message, Toast.LENGTH_SHORT).show()
            }
 
-            println("first button was clicked!")
+            //Modify our print statements to use the better logging statements
+            Log.i(LOG_TAG_BUTTON, "First button was clicked!")
+            //println("First button was clicked!")
         }
 
         // Reusable listeners
@@ -89,17 +91,17 @@ class MainActivity : AppCompatActivity() {
             val btn: Button = (v as Button)
             btn.text = this.getString(R.string.long_pressed_message)
 
+            //switch has to be on for toast messages to appear fyi
             if(this.switchPosition){
                 println("Making button Lambda Toast")
 
                 Log.i(this.LOG_TAG_BUTTON, "Making button 1 Toast")
-                Toast.makeText(this, this.getString(R.string.long_toast_message), Toast.LENGTH_LONG).show()
+
+                Toast.makeText(this, R.string.long_toast_message, Toast.LENGTH_LONG).show()
             }
 
-
-
             println("A button was long pressed!")
-            true
+            true //True consumed the event, so it won't grab a click after
         }
 
         this.secondButton.setOnClickListener(buttonClickListener)
@@ -129,6 +131,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupSwitchCallbacks(){
         this.mainSwitch.setOnClickListener { v: View ->
             val sw: Switch = (v as Switch)
+            this.switchPosition = sw.isChecked
             println("Switch was clicked to: " + sw.isChecked)
 
             Log.i(this.LOG_TAG_SWITCH, "LOG SWITCH THINGY")
